@@ -1,0 +1,52 @@
+group 'ru.ulmc.gwt'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'gwt'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+    }
+}
+gwt {
+    gwtVersion = '2.7.0'
+
+    modules 'ru.ulmc.gwt.sandbox.client'
+
+    compiler {
+        strict = true;
+        enableClosureCompiler = true;
+        disableClassMetadata = true;
+        disableCastChecking = true;
+    }
+}
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+    compile "com.google.gwt:gwt-servlet:2.7.0",
+            dependencies.create("org.springframework.boot:spring-boot-starter-web") {
+                exclude module: "spring-boot-starter-tomcat"
+                exclude module: "hibernate-validator"
+            },
+            "org.springframework.boot:spring-boot-starter-jetty",
+            "org.springframework.boot:spring-boot-starter-actuator"
+
+    compileOnly "com.google.gwt:gwt-user:2.7.0",
+            "com.google.gwt:gwt-dev:2.7.0"
+
+    testCompile("junit:junit")
+}

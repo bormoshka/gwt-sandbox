@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='sandbox'>
+
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.http.HTTP"/>
+
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+
+    <source path="client"/>
+
+    <entry-point class='ru.ulmc.gwt.sandbox.client.SimpleEntryPoint'/>
+    <generate-with class="ru.ulmc.gwt.sandbox.server.rebind.SandGenerator">
+        <when-type-assignable class="ru.ulmc.gwt.sandbox.client.api.ServiceAsync.Client" />
+    </generate-with>
+</module>
