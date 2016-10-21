@@ -1,16 +1,15 @@
 package ru.ulmc.gwt.sandbox.client.api;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.RemoteService;
 
-public interface ServiceAsync {
-    Client client = GWT.create(Client.class);
+import org.fusesource.restygwt.client.DirectRestService;
+import org.fusesource.restygwt.client.MethodCallback;
 
-    void getString(AsyncCallback<String> async);
+import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
+import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
 
-    interface Client {
+public interface ServiceAsync extends DirectRestService {
+    ServiceAsync client = GWT.create(ServiceAsync.class);
 
-        void getString(AsyncCallback<String> async);
-    }
+    void getBean(SimpleBean bean, MethodCallback<NotThatSimpleBean> callback);
 }

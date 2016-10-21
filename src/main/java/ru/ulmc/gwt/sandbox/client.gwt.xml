@@ -2,14 +2,23 @@
 <module rename-to='sandbox'>
 
     <inherits name='com.google.gwt.user.User'/>
-    <inherits name="com.google.gwt.http.HTTP"/>
-
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name='com.google.gwt.http.HTTP'/>
+    <inherits name='com.google.gwt.json.JSON'/>
+    <inherits name="com.sencha.gxt.widget.core.Core"/>
+    <inherits name="com.sencha.gxt.theme.triton.Theme"/>
 
     <source path="client"/>
 
     <entry-point class='ru.ulmc.gwt.sandbox.client.SimpleEntryPoint'/>
+
+    <set-property name="gwt.suppressNonStaticFinalFieldWarnings" value="false"/>
+
+    <collapse-all-properties/>
+
     <generate-with class="ru.ulmc.gwt.sandbox.server.rebind.SandGenerator">
-        <when-type-assignable class="ru.ulmc.gwt.sandbox.client.api.ServiceAsync.Client" />
+        <when-type-assignable class="ru.ulmc.gwt.sandbox.client.api.ServiceAsync"/>
     </generate-with>
 </module>
