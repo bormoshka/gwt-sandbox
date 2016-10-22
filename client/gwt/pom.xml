@@ -13,15 +13,6 @@
     <artifactId>gwt</artifactId>
 
     <build>
-        <sourceDirectory>${src.dir}</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>${res.dir}</directory>
-            </resource>
-            <resource>
-                <directory>${src.dir}</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -47,5 +38,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
