@@ -7,16 +7,21 @@
     <inherits name="com.google.gwt.i18n.I18N"/>
     <inherits name='com.google.gwt.http.HTTP'/>
     <inherits name='com.google.gwt.json.JSON'/>
-    <inherits name="com.sencha.gxt.widget.core.Core"/>
-    <inherits name="com.sencha.gxt.theme.triton.Theme"/>
+    <!--<inherits name="com.sencha.gxt.widget.core.Core"/>-->
+    <!--<inherits name="com.sencha.gxt.theme.triton.Theme"/>-->
 
     <source path="client"/>
 
     <entry-point class='ru.ulmc.gwt.sandbox.client.SimpleEntryPoint'/>
 
-    <set-property name="gwt.suppressNonStaticFinalFieldWarnings" value="false"/>
+    <inherits name='com.google.gwt.core.Core'/>
+    <inherits name='com.google.gwt.user.User'/>
+    <extend-property name="locale" values="ru"/>
+    <stylesheet src="../html/style.css"/>
 
-    <collapse-all-properties/>
+    <!-- <set-property name="gwt.suppressNonStaticFinalFieldWarnings" value="false"/>-->
+    <set-property name="user.agent" value="safari"/>
+   <!-- <collapse-all-properties/>-->
 
     <generate-with class="ru.ulmc.gwt.sandbox.server.rebind.SandGenerator">
         <when-type-assignable class="ru.ulmc.gwt.sandbox.client.api.ServiceAsync"/>

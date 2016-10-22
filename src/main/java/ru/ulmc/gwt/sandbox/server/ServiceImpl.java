@@ -1,24 +1,29 @@
 package ru.ulmc.gwt.sandbox.server;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.ulmc.gwt.sandbox.client.api.Service;
 import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
 import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
+import com.sun.jersey.spi.resource.Singleton;
 
-/**
- * Created by 45 on 20.10.2016.
- */
-@RestController
-@RequestMapping(value = Service.CONTROLLER_URL)
-public class ServiceImpl extends RemoteServiceServlet implements Service {
+import javax.ws.rs.Path;
+
+@Singleton
+public class ServiceImpl implements Service {
+    Logger logger = LoggerFactory.getLogger(ServiceImpl.class);
+
     @Override
     public NotThatSimpleBean getBean(SimpleBean bean) {
+        logger.debug("hit getBean");
         NotThatSimpleBean notThatSimpleBean =  new NotThatSimpleBean();
         notThatSimpleBean.put(bean.getFieldString(), bean.getFieldLong());
         return notThatSimpleBean;
+    }
+
+    @Override
+    public String ping() {
+        logger.debug("hit ping");
+        return "Okay";
     }
 }

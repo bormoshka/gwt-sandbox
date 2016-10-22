@@ -20,11 +20,15 @@ import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
 public interface Service extends DirectRestService {
     Service instance = GWT.create(Service.class);
 
-    String CONTROLLER_URL = "/test";
-    String TEST_REQUEST = "/ACSWSFRBS/"; //todo: придумать вариант получше
+    String CONTROLLER_URL = "/rest/test";
+    String TEST_REQUEST = "/wtf/";
 
     @GET
     @Path(TEST_REQUEST)
     NotThatSimpleBean getBean(SimpleBean bean);
+
+    @GET
+    @Path("/ping")
+    String ping();
 
 }

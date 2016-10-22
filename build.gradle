@@ -4,8 +4,6 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'gwt'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
 
 repositories {
     mavenCentral()
@@ -21,26 +19,22 @@ tasks.withType(JavaCompile) {
 buildscript {
     repositories {
         jcenter()
-        mavenCentral()
         maven {
             url "https://maven.sencha.com/repo/gxt-gpl-release"
         }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
     }
 }
 ext {
     springBootVersion = '1.4.1.RELEASE'
-    mainClassName = 'ru.ulmc.gwt.sandbox.server.Application'
 }
-jar {
+
+war {
     baseName = 'ru-ulmc-gwt-sandbox'
     version = '1.0.0'
 }
-
-warTemplate.onlyIf{false}
 
 gwt {
     gwtVersion = '2.7.0'
@@ -50,7 +44,7 @@ gwt {
     logLevel = 'INFO'
 
     compiler {
-        // strict = true;
+        strict = true;
         enableClosureCompiler = true;
         disableClassMetadata = true;
         disableCastChecking = true;
@@ -60,27 +54,30 @@ gwt {
     }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+task cleanOutputDir(type: Delete) {
+    // delete 'out'
+}
+
+clean {
+    dependsOn cleanOutputDir
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 dependencies {
     compile "com.google.gwt:gwt-servlet:2.7.0",
             "org.fusesource.restygwt:restygwt:2.2.0",
-            // "com.sencha.gxt:gxt:3.1.1",
-            //"com.sencha.gxt:gxt-theme-neptune:3.1.1",
-            dependencies.create("com.sencha.gxt:gxt:4.0.0") {
-                exclude module: "javax.validation:validation-api:1.0.0.GA"
-            },
-            "com.sencha.gxt:gxt-theme-triton:4.0.0",
-            "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
-            "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
-            "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}",
-            "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}",
-            "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}",
-            'javax.ws.rs:jsr311-api:1.1.1' // иначе ошибка компиляции gwt
+            /* dependencies.create("com.sencha.gxt:gxt:4.0.0") {
+                 exclude module: "javax.validation:validation-api:1.0.0.GA"
+             },*/
+            // "com.sencha.gxt:gxt-theme-triton:4.0.0",
+            'org.slf4j:slf4j-api:1.7.21',
+            'com.sun.jersey:jersey-bundle:1.19.2',
+            'javax.ws.rs:jsr311-api:1.1.1'
 
-    runtime "javax.validation:validation-api:1.1.0.Final",
-            "com.fasterxml.jackson.core:jackson-annotations:2.8+"
+    runtime "com.fasterxml.jackson.core:jackson-annotations:2.8+",
+            'org.slf4j:slf4j-log4j12:1.7.21'
 
     compileOnly "com.google.gwt:gwt-dev:2.7.0",
             "com.google.gwt:gwt-user:2.7.0",
@@ -88,5 +85,5 @@ dependencies {
             "javax.validation:validation-api:1.0.0.GA",
             "com.fasterxml.jackson.core:jackson-annotations:2.7.2"
 
-    testCompile("junit:junit")
+    testCompile("junit:junit:+")
 }
