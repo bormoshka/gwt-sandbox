@@ -74,7 +74,8 @@ dependencies {
             // "com.sencha.gxt:gxt-theme-triton:4.0.0",
             'org.slf4j:slf4j-api:1.7.21',
             'com.sun.jersey:jersey-bundle:1.19.2',
-            'javax.ws.rs:jsr311-api:1.1.1'
+            'javax.ws.rs:jsr311-api:1.1.1',
+            'com.vaadin.polymer:vaadin-gwt-polymer-elements:1.2.3.0'
 
     runtime "com.fasterxml.jackson.core:jackson-annotations:2.8+",
             'org.slf4j:slf4j-log4j12:1.7.21'

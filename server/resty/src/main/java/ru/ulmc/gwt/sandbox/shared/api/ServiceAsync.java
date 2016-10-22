@@ -1,0 +1,15 @@
+package ru.ulmc.gwt.sandbox.shared.api;
+
+import com.google.gwt.core.client.GWT;
+import org.fusesource.restygwt.client.DirectRestService;
+import org.fusesource.restygwt.client.MethodCallback;
+import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
+import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
+
+public interface ServiceAsync {
+    ServiceAsync client = GWT.create(ServiceAsync.class);
+
+    void getBean(SimpleBean bean, MethodCallback<NotThatSimpleBean> callback);
+
+    void ping(MethodCallback<String> callback);
+}
