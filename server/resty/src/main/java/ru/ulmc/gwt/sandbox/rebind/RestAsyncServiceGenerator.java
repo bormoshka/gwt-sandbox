@@ -71,7 +71,7 @@ public class RestAsyncServiceGenerator extends Generator {
 
     private void createInstance(SourceWriter sw, JClassType remoteService) {
         String serviceInterface = remoteService.getName().replace("Async", "");
-        sw.println("static " + serviceInterface + " instance = " + serviceInterface + ".instance;");
+       // sw.println("static " + serviceInterface + " instance = " + serviceInterface + ".instance;");
         sw.println("static {");
         sw.indent();
         sw.println("Resource resource = new Resource(" + serviceInterface + ".CONTROLLER_URL);");

@@ -87,9 +87,9 @@
                 <version>1.7.21</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.jersey</groupId>
-                <artifactId>jersey-bundle</artifactId>
-                <version>1.19.2</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>4.3.2.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>javax.ws.rs</groupId>

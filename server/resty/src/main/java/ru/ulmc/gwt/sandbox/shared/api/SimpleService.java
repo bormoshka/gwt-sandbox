@@ -10,20 +10,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path(Service.CONTROLLER_URL)
+@Path(SimpleService.CONTROLLER_URL)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface Service extends DirectRestService {
-    //Service instance = GWT.create(Service.class);
-
-    String CONTROLLER_URL = "rest/test";
-
-    @GET
-    @Path("/wtf/{bean}")
-    NotThatSimpleBean getBean(SimpleBean bean);
+public interface SimpleService extends DirectRestService {
+    String CONTROLLER_IMPL_URL = "ss";
+    String CONTROLLER_URL = "rest/" + CONTROLLER_IMPL_URL;
 
     @GET
-    @Path("/ping")
-    String ping();
+    @Path("/hello")
+    String hello();
 
 }

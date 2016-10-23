@@ -6,7 +6,8 @@ import org.fusesource.restygwt.client.MethodCallback;
 import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
 import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
 
-public interface ServiceAsync {
+public interface ServiceAsync extends CommonAsyncService{
+    Service instance = GWT.create(Service.class);
     ServiceAsync client = GWT.create(ServiceAsync.class);
 
     void getBean(SimpleBean bean, MethodCallback<NotThatSimpleBean> callback);

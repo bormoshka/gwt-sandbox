@@ -1,6 +1,5 @@
 package ru.ulmc.gwt.sandbox.server;
 
-import com.sun.jersey.spi.resource.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +7,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-@Singleton
 @Path("/testc")
 public class TestController {
     Logger logger = LoggerFactory.getLogger(TestController.class);

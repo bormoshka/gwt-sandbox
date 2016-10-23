@@ -12,6 +12,7 @@ import org.fusesource.restygwt.client.MethodCallback;
 import ru.ulmc.gwt.sandbox.shared.api.ServiceAsync;
 import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
 import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
+import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
 
 /**
  * Entry Point
@@ -62,11 +63,31 @@ public class SimpleEntryPointGWT implements EntryPoint {
             }
         });
 
+        Button simpleServiceBtn = new Button("Simple Service");
+        simpleServiceBtn.setWidth("100px");
+        simpleServiceBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                SimpleServiceAsync.client.hello(new MethodCallback<String>() {
+                    @Override
+                    public void onFailure(Method method, Throwable exception) {
+                        label.setText("fail ping");
+                    }
+
+                    @Override
+                    public void onSuccess(Method method, String response) {
+                        label.setText("received: " + response);
+                    }
+                });
+            }
+        });
+
 
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.add(label);
         verticalPanel.add(btn);
         verticalPanel.add(btnPing);
+        verticalPanel.add(simpleServiceBtn);
         verticalPanel.setSpacing(5);
 
         RootPanel.get().add(verticalPanel);
