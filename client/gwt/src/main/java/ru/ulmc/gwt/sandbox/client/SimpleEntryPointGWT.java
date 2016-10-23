@@ -71,7 +71,10 @@ public class SimpleEntryPointGWT implements EntryPoint {
                 SimpleServiceAsync.client.hello(new MethodCallback<String>() {
                     @Override
                     public void onFailure(Method method, Throwable exception) {
-                        label.setText("fail ping");
+                        exception.printStackTrace();
+                        log(exception.getLocalizedMessage());
+                        log(exception.getMessage());
+                        label.setText("fail ping: " + exception.getMessage());
                     }
 
                     @Override
@@ -92,4 +95,10 @@ public class SimpleEntryPointGWT implements EntryPoint {
 
         RootPanel.get().add(verticalPanel);
     }
+
+    public static native void log(String string) /*-{
+        if (window.console != undefined) {
+            window.console.log(string);
+        }
+    }-*/;
 }

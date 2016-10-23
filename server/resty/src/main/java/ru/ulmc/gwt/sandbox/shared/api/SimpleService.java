@@ -19,6 +19,7 @@ public interface SimpleService extends DirectRestService {
 
     @GET
     @Path("/hello")
+    @Produces(MediaType.TEXT_PLAIN)
     String hello();
 
 }
