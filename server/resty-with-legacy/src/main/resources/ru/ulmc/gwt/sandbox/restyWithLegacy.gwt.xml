@@ -21,7 +21,10 @@
 
     <extend-configuration-property
             name="org.fusesource.restygwt.restyjsonserializergenerator"
-            value="ru.ulmc.gwt.sandbox.rebind.BaseModelRestySerializer"/>
+            value="ru.ulmc.gwt.sandbox.rebind.ModelDataHackSerializer"/>
+   <!-- <extend-configuration-property
+            name="org.fusesource.restygwt.restyjsonserializergenerator"
+            value="ru.ulmc.gwt.sandbox.rebind.BaseModelRestySerializer"/>-->
 
     <generate-with class="ru.ulmc.gwt.sandbox.rebind.RestAsyncServiceGenerator">
         <when-type-assignable class="ru.ulmc.gwt.sandbox.shared.api.CommonAsyncService"/>

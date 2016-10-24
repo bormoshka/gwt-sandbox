@@ -10,6 +10,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import ru.ulmc.gwt.sandbox.shared.model.SimpleBaseModelBean;
+import ru.ulmc.gwt.sandbox.shared.model.SimpleTree;
+
+import java.util.List;
 
 @Path(SimpleService.CONTROLLER_URL)
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,5 +28,9 @@ public interface SimpleService extends DirectRestService {
     @POST
     @Path("/post")
     void post(SimpleBaseModelBean bean);
+
+    @GET
+    @Path("/getTree")
+    List<SimpleTree> getTree();
 
 }

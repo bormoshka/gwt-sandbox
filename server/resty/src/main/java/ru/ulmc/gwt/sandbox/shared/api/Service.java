@@ -19,7 +19,7 @@ public interface Service extends DirectRestService {
     String CONTROLLER_URL = "rest/test";
 
     @GET
-    @Path("/wtf/{bean}")
+    @Path("/wtf")
     NotThatSimpleBean getBean(SimpleBean bean);
 
     @GET

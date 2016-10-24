@@ -1,6 +1,16 @@
 package ru.ulmc.gwt.sandbox.client;
 
+import com.extjs.gxt.ui.client.data.BaseTreeLoader;
+import com.extjs.gxt.ui.client.data.BeanModelReader;
+import com.extjs.gxt.ui.client.data.DataProxy;
+import com.extjs.gxt.ui.client.data.DataReader;
+import com.extjs.gxt.ui.client.store.TreeStore;
+import com.extjs.gxt.ui.client.widget.Window;
+import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
+import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
+import com.extjs.gxt.ui.client.widget.treegrid.TreeGrid;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.extjs.gxt.themes.client.Slate;
@@ -17,11 +27,17 @@ import ru.ulmc.gwt.sandbox.client.common.tasks.SimpleCallback;
 import ru.ulmc.gwt.sandbox.client.common.utils.DebugUtil;
 import ru.ulmc.gwt.sandbox.shared.model.SimpleBaseModelBean;
 import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
+import ru.ulmc.gwt.sandbox.shared.model.SimpleTree;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Entry Point GXT2 realization
  */
 public class SimpleEntryPointLegacyGXT implements EntryPoint {
+
+    //protected TreeGrid<SimpleTree> treeGrid = null;
 
     public SimpleEntryPointLegacyGXT() {
 
@@ -91,7 +107,46 @@ public class SimpleEntryPointLegacyGXT implements EntryPoint {
         contentPanel.addButton(btn);
         contentPanel.addButton(btn2);
         contentPanel.add(area);
-
+        setupTreeWindow();
         RootPanel.get().add(contentPanel);
+    }
+
+    protected void setupTreeWindow() {
+        /*List<ColumnConfig> columnConfigList = new ArrayList<>();
+        columnConfigList.add(new ColumnConfig(SimpleTree.FIELD_NAME, "Name", 120));
+
+        final TreeStore<SimpleTree> treeStore = new TreeStore<>(new BaseTreeLoader<SimpleTree>(new DataProxy<List<SimpleTree>>() {
+            @Override
+            public void load(DataReader<List<SimpleTree>> dataReader, Object o, final AsyncCallback<List<SimpleTree>> asyncCallback) {
+                SimpleServiceAsync.client.getTree(new SimpleCallback<List<SimpleTree>>() {
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        DebugUtil.log(throwable);
+                        asyncCallback.onFailure(throwable);
+                    }
+
+                    @Override
+                    public void onSuccess(List<SimpleTree> simpleTrees) {
+                        treeGrid.getStore().removeAll();
+                        treeGrid.getStore().add(simpleTrees);
+                        asyncCallback.onSuccess(simpleTrees);
+                    }
+                });
+            }
+        }));
+
+        final TreeGrid<SimpleTree> treeGrid = new TreeGrid<>(treeStore, new ColumnModel(columnConfigList));
+
+        Button loadBtn = new Button("Load");
+        loadBtn.addSelectionListener(new SelectionListener<ButtonEvent>() {
+            @Override
+            public void componentSelected(ButtonEvent buttonEvent) {
+                treeGrid.getStore().getLoader().load();
+            }
+        });
+        Window win = new Window();
+        win.add(treeGrid);
+        win.addButton(loadBtn);
+        win.show();*/
     }
 }
