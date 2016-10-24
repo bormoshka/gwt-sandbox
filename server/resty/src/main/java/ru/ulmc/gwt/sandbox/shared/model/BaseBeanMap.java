@@ -1,4 +1,4 @@
-package ru.ulmc.gwt.sandbox.client.model;
+package ru.ulmc.gwt.sandbox.shared.model;
 
 import java.util.HashMap;
 import java.util.Map;

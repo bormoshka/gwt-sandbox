@@ -14,5 +14,6 @@
 
     <modules>
         <module>resty</module>
+        <module>resty-with-legacy</module>
     </modules>
 </project>

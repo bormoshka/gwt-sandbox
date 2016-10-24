@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="common">
+
+    <inherits name='com.google.gwt.core.Core'/>
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
+
+    <source path="client"/>
+    <resource path="resources"/>
+
+</module>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="legacyGXT">
+
+    <inherits name='ru.ulmc.gwt.sandbox.restyWithLegacy'/>
+    <inherits name="ru.ulmc.gwt.sandbox.common"/>
+    <inherits name="com.extjs.gxt.themes.Themes"/>
+
+    <source path="client"/>
+    <resource path="resources"/>
+    <source path="ru/ulmc/gwt/sandbox/shared"/>
+
+    <extend-property name="locale" values="ru"/>
+
+    <entry-point class="ru.ulmc.gwt.sandbox.client.SimpleEntryPointLegacyGXT"/>
+    <!-- <stylesheet src="../html/style.css"/>-->
+
+</module>

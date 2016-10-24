@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+
+    <inherits name='com.google.gwt.core.Core'/>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name='com.google.gwt.http.HTTP'/>
+    <inherits name='com.google.gwt.json.JSON'/>
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
+    <inherits name="com.extjs.gxt.ui.GXT"/>
+
+    <source path="client"/>
+    <resource path="resources"/>
+    <source path="shared"/>
+
+    <!--
+    <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
+      <set-property name="restygwt.encodeDecode.useGwtJackson" value="true" />
+      -->
+
+    <extend-configuration-property
+            name="org.fusesource.restygwt.restyjsonserializergenerator"
+            value="ru.ulmc.gwt.sandbox.rebind.BaseModelRestySerializer"/>
+
+    <generate-with class="ru.ulmc.gwt.sandbox.rebind.RestAsyncServiceGenerator">
+        <when-type-assignable class="ru.ulmc.gwt.sandbox.shared.api.CommonAsyncService"/>
+    </generate-with>
+</module>

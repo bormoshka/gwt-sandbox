@@ -2,15 +2,9 @@ package ru.ulmc.gwt.sandbox.server.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
-import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
+import ru.ulmc.gwt.sandbox.shared.model.NotThatSimpleBean;
+import ru.ulmc.gwt.sandbox.shared.model.SimpleBean;
 import ru.ulmc.gwt.sandbox.shared.api.Service;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Конкретно этот пример не работает не смотря на спецификацию. Ошибка в конфигруировании jersey?

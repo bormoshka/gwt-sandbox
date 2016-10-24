@@ -10,9 +10,9 @@ import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.form.TextField;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-import ru.ulmc.gwt.sandbox.shared.api.ServiceAsync;
-import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
-import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
+
+import ru.ulmc.gwt.sandbox.shared.model.NotThatSimpleBean;
+import ru.ulmc.gwt.sandbox.shared.model.SimpleBean;
 
 /**
  * Entry Point GXT realisation

@@ -1,8 +1,8 @@
 package ru.ulmc.gwt.sandbox.shared.api;
 
 import org.fusesource.restygwt.client.DirectRestService;
-import ru.ulmc.gwt.sandbox.client.model.NotThatSimpleBean;
-import ru.ulmc.gwt.sandbox.client.model.SimpleBean;
+import ru.ulmc.gwt.sandbox.shared.model.NotThatSimpleBean;
+import ru.ulmc.gwt.sandbox.shared.model.SimpleBean;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

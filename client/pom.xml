@@ -12,17 +12,13 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>gwt</module>
+        <!--<module>gwt</module>-->
+        <module>legacy-gxt</module>
+        <module>common</module>
         <!--<module>gxt</module>-->
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>ru.ulmc.gwt</groupId>
-            <artifactId>resty</artifactId>
-        </dependency>
-
-
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
