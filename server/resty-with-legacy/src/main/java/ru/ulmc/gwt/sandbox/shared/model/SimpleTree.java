@@ -1,8 +1,6 @@
 package ru.ulmc.gwt.sandbox.shared.model;
 
-import com.extjs.gxt.ui.client.data.BaseTreeModel;
-
-public class SimpleTree /* extends BaseTreeModelWrapper */ {
+public class SimpleTree extends OurTreeModel {
 
     public final static String FIELD_NAME = "name";
     public final static String FIELD_TREE_ID = "treeId";
@@ -10,7 +8,7 @@ public class SimpleTree /* extends BaseTreeModelWrapper */ {
 
     public SimpleTree() {
     }
-/*
+
     public SimpleTree(String name, String trId, String id) {
         set(FIELD_NAME, name);
         set(FIELD_TREE_ID, trId);
@@ -23,5 +21,5 @@ public class SimpleTree /* extends BaseTreeModelWrapper */ {
         for (int i = 0; i < children.length; i++) {
             add(children[i]);
         }
-    }*/
+    }
 }
