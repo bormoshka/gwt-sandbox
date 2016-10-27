@@ -28,7 +28,7 @@ public class SimpleServiceImpl implements SimpleService {
     @RequestMapping(path = "/wait", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
     @ResponseBody
     public String waitForMe() throws Exception {
-        wait(5000);
+        Thread.sleep(5000);
         return gson.toJson("wait!!");
     }
 }
