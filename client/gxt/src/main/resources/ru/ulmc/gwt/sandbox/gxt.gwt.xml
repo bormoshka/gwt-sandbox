@@ -12,7 +12,7 @@
 
     <extend-property name="locale" values="ru"/>
 
-    <entry-point class="ru.ulmc.gwt.sandbox.client.SimpleEntryPointLegacyGXT"/>
+    <entry-point class="ru.ulmc.gwt.sandbox.client.SimpleEntryPointGXT"/>
     <!-- collapse properties for fewer permutations -->
     <collapse-property name="gxt.device" values="phone, tablet" />
     <!-- <collapse-property name="gxt.theme" values="blue, gray" /> -->

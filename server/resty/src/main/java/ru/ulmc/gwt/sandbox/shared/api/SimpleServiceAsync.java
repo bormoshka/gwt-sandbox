@@ -8,4 +8,6 @@ public interface SimpleServiceAsync extends CommonAsyncService {
     SimpleServiceAsync client = GWT.create(SimpleServiceAsync.class);
 
     void hello(MethodCallback<String> callback);
+
+    void waitForMe(MethodCallback<String> callback);
 }

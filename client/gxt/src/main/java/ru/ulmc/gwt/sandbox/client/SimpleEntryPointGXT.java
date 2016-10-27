@@ -3,15 +3,21 @@ package ru.ulmc.gwt.sandbox.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.sencha.gxt.widget.core.client.Window;
+import com.sencha.gxt.widget.core.client.box.AlertMessageBox;
+import com.sencha.gxt.widget.core.client.box.AutoProgressMessageBox;
+import com.sencha.gxt.widget.core.client.box.MessageBox;
 import com.sencha.gxt.widget.core.client.button.TextButton;
 import com.sencha.gxt.widget.core.client.container.CenterLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.VBoxLayoutContainer;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
+import com.sencha.gxt.widget.core.client.event.ShowEvent;
 import com.sencha.gxt.widget.core.client.form.TextField;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-
-import ru.ulmc.gwt.sandbox.shared.model.NotThatSimpleBean;
+import ru.ulmc.gwt.sandbox.client.common.tasks.SimpleCallback;
+import ru.ulmc.gwt.sandbox.client.common.tasks.SimpleListener;
+import ru.ulmc.gwt.sandbox.client.common.tasks.Task;
+import ru.ulmc.gwt.sandbox.client.common.tasks.TaskQueue;
+import ru.ulmc.gwt.sandbox.client.common.utils.DebugUtil;
+import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
 import ru.ulmc.gwt.sandbox.shared.model.SimpleBean;
 
 /**
@@ -23,7 +29,7 @@ public class SimpleEntryPointGXT implements EntryPoint {
     }
 
     public void onModuleLoad() {
-
+        setupQueueWorker();
         final TextField textField = new TextField();
         // textField.setWidth(200);
         TextButton button = new TextButton("Send request!");
@@ -33,17 +39,22 @@ public class SimpleEntryPointGXT implements EntryPoint {
             @Override
             public void onSelect(SelectEvent event) {
                 final SimpleBean bean = new SimpleBean("Groove", 1337L);
-                ServiceAsync.client.getBean(bean, new MethodCallback<NotThatSimpleBean>() {
+                new Task() {
                     @Override
-                    public void onFailure(Method method, Throwable exception) {
-                        textField.setValue("fail");
-                    }
+                    public void execute(SimpleListener listener) {
+                        SimpleServiceAsync.client.waitForMe(new SimpleCallback<String>(listener) {
+                            @Override
+                            public void onFailure(Throwable throwable) {
+                                new AlertMessageBox("Error", throwable.getMessage()).show();
+                            }
 
-                    @Override
-                    public void onSuccess(Method method, NotThatSimpleBean response) {
-                        textField.setValue("received: " + response.get(bean.getFieldString()));
+                            @Override
+                            public void onSuccess(String s) {
+                                new MessageBox("onSuccess", "Hooray! It's alive!").show();
+                            }
+                        });
                     }
-                });
+                }.start();
             }
         });
 
@@ -57,8 +68,41 @@ public class SimpleEntryPointGXT implements EntryPoint {
         Window window = new Window();
         window.setHeading("Sending Request");
         window.setWidth(300);
+        window.setHeight(150);
         window.setWidget(clc);
 
         RootPanel.get().add(window);
+    }
+
+    protected void setupQueueWorker() {
+        TaskQueue.set(new TaskQueue() {
+            private AutoProgressMessageBox progressWindow;
+
+            {
+                progressWindow = new AutoProgressMessageBox("Loading...");
+                progressWindow.setProgressText("Fetching data...");
+                progressWindow.addShowHandler(new ShowEvent.ShowHandler() {
+                    @Override
+                    public void onShow(ShowEvent showEvent) {
+                        progressWindow.center();
+                    }
+                });
+            }
+
+            @Override
+            public void onStart() {
+                progressWindow.show();
+            }
+
+            @Override
+            public void onFinish() {
+                progressWindow.hide();
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                DebugUtil.log(throwable.getMessage());
+            }
+        });
     }
 }

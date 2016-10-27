@@ -20,4 +20,10 @@ public interface SimpleService extends DirectRestService {
     @Produces(MediaType.TEXT_PLAIN)
     String hello();
 
+    @GET
+    @Path("/wait")
+    @Produces(MediaType.TEXT_PLAIN)
+    String waitForMe() throws Exception;
+
+
 }

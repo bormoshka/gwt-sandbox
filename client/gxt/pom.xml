@@ -25,6 +25,10 @@
             <groupId>com.sencha.gxt</groupId>
             <artifactId>gxt-theme-triton</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ru.ulmc.gwt</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
     </dependencies>
 
 

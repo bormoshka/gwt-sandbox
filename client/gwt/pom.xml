@@ -11,7 +11,7 @@
     <packaging>war</packaging>
 
     <artifactId>gwt</artifactId>
-    
+
     <dependencies>
         <dependency>
             <groupId>ru.ulmc.gwt</groupId>
