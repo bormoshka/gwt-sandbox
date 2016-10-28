@@ -16,4 +16,5 @@
     <generate-with class="ru.ulmc.gwt.sandbox.rebind.RestAsyncServiceGenerator">
         <when-type-assignable class="ru.ulmc.gwt.sandbox.shared.api.CommonAsyncService"/>
     </generate-with>
+    <add-linker name="xsiframe"/>
 </module>

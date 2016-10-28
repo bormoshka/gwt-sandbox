@@ -2,7 +2,7 @@ package ru.ulmc.gwt.sandbox.client.common.tasks;
 
 public abstract class Task {
 
-    public abstract void execute(SimpleListener listener);
+    public abstract void execute(Listener listener);
 
     public void onCancel() {
 

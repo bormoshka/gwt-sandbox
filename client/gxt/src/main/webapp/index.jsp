@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 45
+  Date: 28.10.2016
+  Time: 20:31
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +14,7 @@
     <title>Sandbox</title>
     <meta name="viewport"
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
-    <script type="text/javascript" language="javascript" src="gxt/gxt.nocache.js"></script>
+    <script type="text/javascript" language="javascript" src="gxt/gxt.nocache.js?=<%=System.currentTimeMillis()%>"></script>
 </head>
 
 <body>

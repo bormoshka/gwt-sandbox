@@ -1,6 +1,6 @@
 package ru.ulmc.gwt.sandbox.client.common.tasks;
 
-public interface SimpleListener {
+public interface Listener {
     void onStart();
 
     void onException(Throwable throwable);

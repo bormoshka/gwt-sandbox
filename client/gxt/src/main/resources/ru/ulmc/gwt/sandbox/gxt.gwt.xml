@@ -24,4 +24,5 @@
     <collapse-property name="user.agent" values="ie*" />
     <!-- <stylesheet src="../html/style.css"/>-->
 
+    <add-linker name="xsiframe"/>
 </module>

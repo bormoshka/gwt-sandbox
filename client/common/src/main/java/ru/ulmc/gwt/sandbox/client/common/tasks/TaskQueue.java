@@ -4,7 +4,7 @@ package ru.ulmc.gwt.sandbox.client.common.tasks;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TaskQueue implements SimpleListener {
+public class TaskQueue implements Listener {
     private final Set<Task> taskSet = new HashSet<>();
     private static TaskQueue main = null;
 
@@ -58,7 +58,7 @@ public class TaskQueue implements SimpleListener {
             onStart(); //Инициализирует только первая задача
         }
         try {
-            task.execute(new SimpleListener() {
+            task.execute(new Listener() {
                 @Override
                 public void onStart() {
                 }

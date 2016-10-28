@@ -4,13 +4,13 @@ import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
 /**
- *
+ * disclaimer: я против использования назввания SimpleCallback и т.п. на реальных проектах.
  */
 public abstract class SimpleCallback<T> implements MethodCallback<T> {
 
-    private SimpleListener listener;
+    private Listener listener;
 
-    public SimpleCallback(SimpleListener listener) {
+    public SimpleCallback(Listener listener) {
         this.listener = listener;
     }
 
@@ -29,5 +29,7 @@ public abstract class SimpleCallback<T> implements MethodCallback<T> {
     public abstract void onFailure(Throwable throwable);
 
     public abstract void onSuccess(T t);
+
+    //todo: onFailureAfter/onSuccessAfter ; default actions
 
 }
