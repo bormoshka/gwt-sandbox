@@ -3,14 +3,11 @@ package ru.ulmc.gwt.sandbox.client.common.tasks;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
-/**
- * disclaimer: я против использования назввания SimpleCallback и т.п. на реальных проектах.
- */
-public abstract class SimpleCallback<T> implements MethodCallback<T> {
+public abstract class BaseCallback<T> implements MethodCallback<T> {
 
     private Listener listener;
 
-    public SimpleCallback(Listener listener) {
+    public BaseCallback(Listener listener) {
         this.listener = listener;
     }
 

@@ -1,6 +1,7 @@
 package ru.ulmc.gwt.sandbox.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dev.util.collect.HashMap;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -12,7 +13,6 @@ import com.sencha.gxt.widget.core.client.box.MessageBox;
 import com.sencha.gxt.widget.core.client.button.TextButton;
 import com.sencha.gxt.widget.core.client.container.CenterLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.NorthSouthContainer;
-import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.container.VBoxLayoutContainer;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.event.ShowEvent;
@@ -20,19 +20,24 @@ import com.sencha.gxt.widget.core.client.form.TextField;
 import com.sencha.gxt.widget.core.client.menu.Menu;
 import com.sencha.gxt.widget.core.client.menu.MenuBar;
 import com.sencha.gxt.widget.core.client.menu.MenuBarItem;
-import ru.ulmc.gwt.sandbox.client.common.tasks.SimpleCallback;
+import ru.ulmc.gwt.sandbox.client.common.tasks.BaseCallback;
 import ru.ulmc.gwt.sandbox.client.common.tasks.Listener;
 import ru.ulmc.gwt.sandbox.client.common.tasks.Task;
-import ru.ulmc.gwt.sandbox.client.common.tasks.TaskQueue;
+import ru.ulmc.gwt.sandbox.client.common.tasks.TasksExecutor;
 import ru.ulmc.gwt.sandbox.client.common.utils.DebugUtil;
-import ru.ulmc.gwt.sandbox.client.panel.PagePanel;
+import ru.ulmc.gwt.sandbox.client.panel.HasPageContent;
+import ru.ulmc.gwt.sandbox.client.panel.main.CitiesPanel;
 import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
 import ru.ulmc.gwt.sandbox.shared.model.SimpleBean;
+
+import java.util.Map;
 
 /**
  * Entry Point GXT realisation
  */
 public class SimpleEntryPointGXT implements EntryPoint {
+
+    Map<String, HasPageContent> contents = new HashMap<>();
 
     public SimpleEntryPointGXT() {
     }
@@ -51,7 +56,7 @@ public class SimpleEntryPointGXT implements EntryPoint {
                 new Task() {
                     @Override
                     public void execute(Listener listener) {
-                        SimpleServiceAsync.client.waitForMe(new SimpleCallback<String>(listener) {
+                        SimpleServiceAsync.client.waitForMe(new BaseCallback<String>(listener) {
                             @Override
                             public void onFailure(Throwable throwable) {
                                 new AlertMessageBox("Error", throwable.getMessage()).show();
@@ -83,7 +88,7 @@ public class SimpleEntryPointGXT implements EntryPoint {
 
         final NorthSouthContainer northSouthContainer = new NorthSouthContainer();
         northSouthContainer.setNorthWidget(getMenu());
-        northSouthContainer.setSouthWidget(new PagePanel());
+        northSouthContainer.setSouthWidget(new CitiesPanel());
 
         ContentPanel cp = new ContentPanel();
         cp.setHeading("SimpleEntryPointGXT root ContentPanel");
@@ -100,16 +105,21 @@ public class SimpleEntryPointGXT implements EntryPoint {
 
     protected MenuBar getMenu() {
         Menu menu = new Menu();
-        menu.add(new MenuBarItem("Example MenuBarItem"));
+        menu.add(new MenuBarItem("Население городов"));
         menu.add(new MenuBarItem("Example MenuBarItem"));
 
         MenuBar menuBar = new MenuBar();
-        menuBar.add(new MenuBarItem("Root menuBarItem 1", menu));
+        menuBar.add(new MenuBarItem("Главная", menu));
         return menuBar;
     }
 
+    protected void initContent() {
+        contents.put("cities", new CitiesPanel());
+
+    }
+
     protected void setupQueueWorker() {
-        TaskQueue.set(new TaskQueue() {
+        TasksExecutor.set(new TasksExecutor() {
             private AutoProgressMessageBox progressWindow;
 
             {

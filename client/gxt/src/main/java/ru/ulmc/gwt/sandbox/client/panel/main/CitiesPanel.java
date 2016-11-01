@@ -1,7 +1,8 @@
-package ru.ulmc.gwt.sandbox.client.panel;
+package ru.ulmc.gwt.sandbox.client.panel.main;
 
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.Widget;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.loader.DataProxy;
 import com.sencha.gxt.data.shared.loader.ListLoadConfig;
@@ -14,18 +15,19 @@ import com.sencha.gxt.widget.core.client.grid.Grid;
 import ru.ulmc.gwt.sandbox.client.common.LoaderCallback;
 import ru.ulmc.gwt.sandbox.client.common.tasks.Listener;
 import ru.ulmc.gwt.sandbox.client.common.tasks.Task;
+import ru.ulmc.gwt.sandbox.client.panel.HasPageContent;
 import ru.ulmc.gwt.sandbox.shared.model.CityModel;
 import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PagePanel extends ContentPanel {
+public class CitiesPanel extends ContentPanel implements HasPageContent {
 
     private static final CityModel.CityProperties properties = GWT.create(CityModel.CityProperties.class);
     private Grid<CityModel> grid = null;
 
-    public PagePanel() {
+    public CitiesPanel() {
         setHeaderVisible(false);
         grid = new Grid<>(initListStore(), initColumnModel());
         grid.setLoader(new ListLoader<>(new DataProxy<ListLoadConfig, ListLoadResult>() {
@@ -68,4 +70,8 @@ public class PagePanel extends ContentPanel {
         return new ListStore<>(properties.key());
     }
 
+    @Override
+    public Widget getContentHolder() {
+        return this;
+    }
 }

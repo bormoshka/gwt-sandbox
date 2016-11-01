@@ -16,7 +16,9 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.fusesource.restygwt</groupId>
             <artifactId>restygwt</artifactId>

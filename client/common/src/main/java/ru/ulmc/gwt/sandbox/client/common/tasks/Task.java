@@ -1,6 +1,6 @@
 package ru.ulmc.gwt.sandbox.client.common.tasks;
 
-public abstract class Task {
+public abstract class Task implements Executable {
 
     public abstract void execute(Listener listener);
 
@@ -8,10 +8,11 @@ public abstract class Task {
 
     }
 
-    public void start(TaskQueue queue) {
+    public void start(TasksExecutor queue) {
         queue.execute(this);
     }
 
-    public void start() {TaskQueue.get().execute(this);}
+    public void start() {
+        TasksExecutor.get().execute(this);}
 
 }

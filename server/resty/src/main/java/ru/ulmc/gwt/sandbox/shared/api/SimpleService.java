@@ -19,12 +19,12 @@ public interface SimpleService extends DirectRestService {
 
     @GET
     @Path("/hello")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     String hello();
 
     @GET
     @Path("/wait")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     String waitForMe() throws Exception;
 
 

@@ -4,16 +4,16 @@ package ru.ulmc.gwt.sandbox.client.common.tasks;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TaskQueue implements Listener {
+public class TasksExecutor implements Listener {
     private final Set<Task> taskSet = new HashSet<>();
-    private static TaskQueue main = null;
+    private static TasksExecutor main = null;
 
-    public static TaskQueue get() {
+    public static TasksExecutor get() {
         return main;
     }
 
-    public static void set(TaskQueue main) {
-        TaskQueue.main = main;
+    public static void set(TasksExecutor main) {
+        TasksExecutor.main = main;
     }
 
     public final void execute(Task... tasks) {

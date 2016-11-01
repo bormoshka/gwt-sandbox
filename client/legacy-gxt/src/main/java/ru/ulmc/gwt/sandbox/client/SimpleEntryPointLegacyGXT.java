@@ -25,7 +25,7 @@ import com.extjs.gxt.ui.client.widget.treegrid.TreeGrid;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.ulmc.gwt.sandbox.client.common.tasks.SimpleCallback;
+import ru.ulmc.gwt.sandbox.client.common.tasks.BaseCallback;
 import ru.ulmc.gwt.sandbox.client.common.utils.DebugUtil;
 import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
 import ru.ulmc.gwt.sandbox.shared.model.SimpleBaseModelBean;
@@ -56,7 +56,7 @@ public class SimpleEntryPointLegacyGXT implements EntryPoint {
         btn.addSelectionListener(new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent buttonEvent) {
-                SimpleServiceAsync.client.hello(new SimpleCallback<SimpleBaseModelBean>() {
+                SimpleServiceAsync.client.hello(new BaseCallback<SimpleBaseModelBean>() {
                     @Override
                     public void onFailure(Throwable throwable) {
                         throwable.printStackTrace();
@@ -81,7 +81,7 @@ public class SimpleEntryPointLegacyGXT implements EntryPoint {
                 SimpleBaseModelBean bean = new SimpleBaseModelBean("No", "WAY!");
                 bean.setTestField("Yep! Оно здесь!");
                 bean.set("UNMAPPED_FIELD", 1337L);
-                SimpleServiceAsync.client.post(bean, new SimpleCallback<Void>() {
+                SimpleServiceAsync.client.post(bean, new BaseCallback<Void>() {
                     @Override
                     public void onFailure(Throwable throwable) {
                         throwable.printStackTrace();
@@ -118,7 +118,7 @@ public class SimpleEntryPointLegacyGXT implements EntryPoint {
         TreeStore<SimpleTree> treeStore = new TreeStore<>(new BaseTreeLoader<SimpleTree>(new DataProxy<List<SimpleTree>>() {
             @Override
             public void load(DataReader<List<SimpleTree>> dataReader, Object o, final AsyncCallback<List<SimpleTree>> asyncCallback) {
-                SimpleServiceAsync.client.getTree(new SimpleCallback<List<SimpleTree>>() {
+                SimpleServiceAsync.client.getTree(new BaseCallback<List<SimpleTree>>() {
                     @Override
                     public void onFailure(Throwable throwable) {
                         DebugUtil.log(throwable);
