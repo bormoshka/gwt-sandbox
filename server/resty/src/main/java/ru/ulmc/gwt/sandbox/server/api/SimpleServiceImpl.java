@@ -3,9 +3,7 @@ package ru.ulmc.gwt.sandbox.server.api;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.ulmc.gwt.sandbox.shared.api.SimpleService;
 import ru.ulmc.gwt.sandbox.shared.model.CityModel;
 
@@ -60,5 +58,32 @@ public class SimpleServiceImpl implements SimpleService {
         return list;
     }
 
+    @Override
+    @GetMapping(path = "/stepOne", produces = MediaType.APPLICATION_JSON)
+    public String stepOne() throws Exception {
+        Thread.sleep(2000);
+        return gson.toJson("stepOneCompleted!");
+    }
 
+    @Override
+    @GetMapping(path = "/stepTwo/{input}/{throwError}", produces = MediaType.APPLICATION_JSON)
+    public Long stepTwo(@PathVariable boolean throwError, @PathVariable String input) throws Exception {
+        logger.debug("stepTwo {}", input);
+        if (throwError) {
+            throw new Exception("Ouch!");
+        }
+        Thread.sleep(2000);
+        return 1337L;
+    }
+
+    @Override
+    @GetMapping(path = "/stepThree/{input}",produces = MediaType.APPLICATION_JSON)
+    public List<String> stepThree(@PathVariable Long input) throws Exception {
+        logger.debug("stepThree {}", input);
+        Thread.sleep(2000);
+        List<String> list = new ArrayList<>();
+        list.add("some");
+        list.add("strings");
+        return list;
+    }
 }
