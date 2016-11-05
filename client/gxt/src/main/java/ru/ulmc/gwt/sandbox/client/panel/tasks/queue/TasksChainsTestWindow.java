@@ -78,7 +78,7 @@ public class TasksChainsTestWindow extends Window {
             }
         }).add(new ChainTask<Long, Long>() {
             @Override
-            public void execute(Long previousOutput, ResultListener<Long> listener) {
+            public void execute(Long previousOutput, final ResultListener<Long> listener) {
                 append("Before executing secondTask2");
                 SimpleServiceAsync.client.stepTwo(false, previousOutput + "", new ChainedCallback<Long>(listener) {
                     @Override
@@ -88,6 +88,7 @@ public class TasksChainsTestWindow extends Window {
                             append("onSuccess secondTask2 logic true");
                         } else {
                             append("onSuccess secondTask2 logic false");
+                            listener.abort(); //прекратить дальнейшее выполнение цепочки
                         }
                     }
                 });

@@ -29,7 +29,9 @@ public abstract class ChainedCallback<R> implements MethodCallback<R> {
 
     public void onFailure(Throwable throwable) {
 
-    };
+    }
+
+    ;
 
     public abstract void onSuccess(R result);
 }

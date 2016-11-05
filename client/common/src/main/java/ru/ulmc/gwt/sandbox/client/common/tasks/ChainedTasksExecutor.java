@@ -39,8 +39,7 @@ public class ChainedTasksExecutor {
     protected void execute(Object returnedValue, final Queue<ChainTask> queue) {
         ChainTask executable = queue.poll();
         if (executable == null) {
-            commonListener.onFinish();
-            taskQueues.remove(queue);
+            finish(queue);
             return;
         }
         executable.execute(returnedValue, new ResultListener() {
@@ -50,10 +49,20 @@ public class ChainedTasksExecutor {
             }
 
             @Override
+            public void abort() {
+                finish(queue);
+            }
+
+            @Override
             public void onFinish(Object result) {
                 execute(result, queue);
             }
         });
+    }
+
+    protected void finish(Queue<ChainTask> queue) {
+        commonListener.onFinish();
+        taskQueues.remove(queue);
     }
 
     protected void onExceptionInner(Throwable throwable, Queue<ChainTask> queue) {

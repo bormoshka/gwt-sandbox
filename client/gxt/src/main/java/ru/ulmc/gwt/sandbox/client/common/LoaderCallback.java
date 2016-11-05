@@ -2,8 +2,8 @@ package ru.ulmc.gwt.sandbox.client.common;
 
 import com.sencha.gxt.data.shared.ListStore;
 import org.fusesource.restygwt.client.Method;
-import ru.ulmc.gwt.sandbox.client.common.tasks.Listener;
 import ru.ulmc.gwt.sandbox.client.common.tasks.BaseCallback;
+import ru.ulmc.gwt.sandbox.client.common.tasks.Listener;
 
 import java.util.List;
 

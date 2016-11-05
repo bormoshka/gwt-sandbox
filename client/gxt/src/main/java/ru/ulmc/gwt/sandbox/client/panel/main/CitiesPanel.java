@@ -9,15 +9,18 @@ import com.sencha.gxt.data.shared.loader.ListLoadConfig;
 import com.sencha.gxt.data.shared.loader.ListLoadResult;
 import com.sencha.gxt.data.shared.loader.ListLoader;
 import com.sencha.gxt.widget.core.client.ContentPanel;
+import com.sencha.gxt.widget.core.client.event.CellClickEvent;
+import com.sencha.gxt.widget.core.client.event.RowClickEvent;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
 import com.sencha.gxt.widget.core.client.grid.ColumnModel;
 import com.sencha.gxt.widget.core.client.grid.Grid;
 import ru.ulmc.gwt.sandbox.client.common.LoaderCallback;
 import ru.ulmc.gwt.sandbox.client.common.tasks.Listener;
 import ru.ulmc.gwt.sandbox.client.common.tasks.Task;
+import ru.ulmc.gwt.sandbox.client.common.utils.DebugUtil;
 import ru.ulmc.gwt.sandbox.client.panel.HasPageContent;
-import ru.ulmc.gwt.sandbox.shared.model.CityModel;
 import ru.ulmc.gwt.sandbox.shared.api.SimpleServiceAsync;
+import ru.ulmc.gwt.sandbox.shared.model.CityModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,18 @@ public class CitiesPanel extends ContentPanel implements HasPageContent {
         grid.getView().setStripeRows(true);
         grid.getView().setAdjustForHScroll(true);
         grid.getLoader().load();
+        grid.addCellClickHandler(new CellClickEvent.CellClickHandler() {
+            @Override
+            public void onCellClick(CellClickEvent event) {
+                DebugUtil.log("onCellClick: " + event.getCellIndex() + ", " + event.getRowIndex());
+            }
+        });
+        grid.addRowClickHandler(new RowClickEvent.RowClickHandler() {
+            @Override
+            public void onRowClick(RowClickEvent event) {
+                DebugUtil.log("onRowClick: " + event.getColumnIndex() + ", " + event.getRowIndex());
+            }
+        });
         setWidget(grid);
     }
 

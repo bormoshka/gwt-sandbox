@@ -4,7 +4,7 @@ public interface ResultListener<T> {
     void onException(Throwable throwable);
 
     //how about
-    //void abort();
+    void abort();
     //?
 
     void onFinish(T result);
