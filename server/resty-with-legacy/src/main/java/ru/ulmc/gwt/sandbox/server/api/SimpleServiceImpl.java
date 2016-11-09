@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ru.ulmc.gwt.sandbox.shared.api.SimpleService;
+import ru.ulmc.gwt.sandbox.shared.model.ComplexBaseModelBean;
 import ru.ulmc.gwt.sandbox.shared.model.SimpleBaseModelBean;
 import ru.ulmc.gwt.sandbox.shared.model.SimpleTree;
 
@@ -26,15 +27,16 @@ class SimpleServiceImpl implements SimpleService {
     @Override
     @RequestMapping(path = "/hello", method = RequestMethod.GET)
     @ResponseBody
-    public SimpleBaseModelBean hello() {
-        return new SimpleBaseModelBean("You are", "awesome!");
+    public ComplexBaseModelBean hello() {
+        return new ComplexBaseModelBean(new SimpleBaseModelBean("You are", "awesome!"));
     }
 
     @Override
     @RequestMapping(path = "/post", method = RequestMethod.POST)
-    public void post(@RequestBody SimpleBaseModelBean bean) {
-        logger.debug("Hit PUT method A: {}, B: {}", bean.getA(), bean.getB());
+    public void post(@RequestBody ComplexBaseModelBean bean) {
+        logger.debug("Hit PUT method: {}", bean);
     }
+
 
     @Override
     @RequestMapping(path = "/getTree", method = RequestMethod.GET)

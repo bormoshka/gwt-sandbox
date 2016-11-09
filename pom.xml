@@ -10,7 +10,7 @@
     <modules>
         <module>client</module>
         <module>server</module>
-        <module>wrapper</module>
+        <!--<module>wrapper</module>-->
     </modules>
     <packaging>pom</packaging>
 
@@ -24,11 +24,11 @@
     </properties>
 
     <repositories>
-        <repository>
+        <!--<repository>
             <id>sencha-gxt-repository</id>
             <name>Sencha GXT Repository</name>
             <url>https://maven.sencha.com/repo/gxt-gpl-release</url>
-        </repository>
+        </repository>-->
     </repositories>
 
     <profiles>
@@ -64,7 +64,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
+            <!--<dependency>
                 <groupId>ru.ulmc.gwt</groupId>
                 <artifactId>resty</artifactId>
                 <version>1.0-SNAPSHOT</version>
@@ -72,6 +72,11 @@
             <dependency>
                 <groupId>ru.ulmc.gwt</groupId>
                 <artifactId>gxt</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>-->
+            <dependency>
+                <groupId>ru.ulmc.gwt</groupId>
+                <artifactId>legacy-gxt</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

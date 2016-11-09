@@ -12,10 +12,10 @@
 
     <packaging>pom</packaging>
     <modules>
-        <!--<module>gwt</module>-->
-        <!--<module>legacy-gxt</module>-->
         <module>common</module>
-        <module>gxt</module>
+        <!--<module>gwt</module>-->
+        <module>legacy-gxt</module>
+        <!--<module>gxt</module>-->
     </modules>
 
     <dependencies>

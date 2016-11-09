@@ -31,13 +31,13 @@
         </dependency>-->
 
 
+       <!-- <dependency>
+            <groupId>ru.ulmc.gwt</groupId>
+            <artifactId>resty-with-legacy</artifactId>
+        </dependency>-->
         <dependency>
             <groupId>ru.ulmc.gwt</groupId>
-            <artifactId>resty</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ru.ulmc.gwt</groupId>
-            <artifactId>gxt</artifactId>
+            <artifactId>legacy-gxt</artifactId>
         </dependency>
     </dependencies>
     <build>
