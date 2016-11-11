@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module rename-to="gxt">
-    <inherits name='ru.ulmc.gwt.sandbox.gxt'/>
-    <collapse-all-properties/>
-    <set-configuration-property name="devModeUrlWhitelistRegexp" value="http://127\.0\.0\.1(:\d+)?/.*" />
-
-</module>
